@@ -1,0 +1,1284 @@
+---
+title: "kandhway_HW2"
+author: "AK"
+date: "2/3/2020"
+output: html_document
+---
+#one element vector
+```{r}
+myscalar<-2
+myscalar
+```
+
+##define length
+```{r}
+x <- c(5,12,13)
+length(x)
+```
+```{r}
+mode(x)
+```
+```{r}
+y <- "abc"
+length(y)
+```
+
+```{r}
+mode(y)
+```
+#multi element character
+# "" makes resylts in character
+```{r}
+z <- c("acb", "22", "88")
+length(z)
+mode(z)
+```
+#adding/deleting vector
+```{r}
+x <- c(88,22,33)
+x
+```
+
+#insert
+```{r}
+x <- c(x[1:3], 168, x[4])
+x
+```
+
+# Q5- subset vector w
+```{r}
+v <- c(8:19)
+v
+w <- c(v[1:4])
+w
+```
+
+# Q6 subset h
+```{r}
+d <- c(8:20)
+h <- c(d[4:8])
+h
+```
+
+#lenght of a vector using "for"
+```{r}
+x <- c(1,2,4)
+length(x)
+for (i in 1:length(x))
+{
+  #print current element of x
+  print (x[i])
+}
+1:length(x) 
+```
+
+#Q7 lenght of vector w
+```{r}
+length(w)
+```
+#Use of :
+```{r}
+x
+1:length(x)
+for (i in 1:length(x)) 
+{print(x[i])}
+```
+
+```{r}
+i <- 3
+1:i-1
+#means create a vector of 1 to 3, and then subtract 1 from the vector
+```
+
+```{r}
+1:(i-1)
+#evaluates i-1 first, then generates a sequence from 1 to2
+```
+
+#seq() function
+```{r}
+?seq()
+seq(from =1, to =5, by=1)
+```
+#which is same as :
+
+```{r}
+seq(from=12, to=32, by=3)
+```
+```{r}
+seq(from=1.1, to=2, length=10)
+seq(from=1.1, to=2, by=0.1)
+```
+
+#Types and coercion of vectors
+```{r}
+my.int <- c(1L,2L, 8L)
+typeof(my.int)
+```
+```{r}
+is.integer
+```
+
+```{r}
+is.character(my.int)
+is.integer((my.int))
+```
+
+```{r}
+my.dbl <- c(1.2,2.5,8.8)
+typeof(my.dbl)
+is.atomic(my.dbl)
+is.logical(my.dbl)
+is.numeric(my.dbl)
+```
+
+#Q8 What are the 3 properties of a vector, other than its contents
+#Type, Length, and Type or attributes
+
+#Vector equality
+```{r}
+x <- 1:3
+y <- c(1,2,4)
+x
+y
+?"=="
+```
+```{r}
+x==y
+all(x==y)
+identical(x,y)
+
+```
+#Careful use of identical 
+```{r}
+x <- 1:2
+y <- c(1,2)
+x
+y
+identical(x,y)
+```
+```{r}
+typeof(x)
+typeof(y)
+```
+#above means that : produces integers while c produces floating numbers
+
+#coercing vectors
+```{r}
+?"coerce"
+```
+#Definition- Objects from one class can turn into objects from another class either automatically or by an explicit call to the as function.Example- combing a character and and integer gives a character
+```{r}
+z=(c("a", 3))
+z
+typeof(z)
+```
+
+*Q9 Can you predict the output of the following uses of c()? c(3,FALSE) c("a",1) c(4L,2)
+```{r}
+a <- c(3, FALSE)
+b <- c("a",1)
+c <- c(4L,2)
+a
+b
+c
+typeof(a)
+typeof(b)
+typeof(c)
+```
+
+#coercing logical into vector integer
+```{r}
+y <- c(FALSE, FALSE, TRUE, FALSE, TRUE)
+as.numeric(y)
+```
+
+#Total no. of TRUES and proprtion
+```{r}
+sum(y)
+mean(y)
+```
+
+*Q10 . What are the 4 types of common atomic vectors? What are the 2 rare types?
+#The atomic modes are "logical", "integer", "numeric" (synonym "double"), "complex", "character" and "raw". Rare type are  complex and raw
+
+*Q11. Why is 1=="1" true? Why is -1 < FALSE true? Why is "one< 2 false?
+# For first two operations, coercion is happening automatically but for thrid one "one" is treated as a character
+```{r}
+1=="1"
+-1<FALSE
+"one"<2
+```
+
+
+*Q12. Why is the default missing value NA, a logical vector? What’s so special about logical vectors? Hint: think about c(FALSE,NA_character)
+# Since NA is a logical constant of length 1 which contains a missing value indicator. If we saw a NA, it means that is.na(x) already equals to TRUE.NA will always be coerced to the correct type if used inside c() because logical vector is in the lowest hierarchy of the coercion rule.
+It is special because it can be used as condition, and R does recognize it. if not
+NA would have been processed as character.
+
+#indexing vectors
+```{r}
+x <- c(1,2,3,4,5,6)
+y <- x[c(1:3)]
+z <- x[c(1,1,4)]
+y
+z
+x[-1:-3]
+```
+#length 
+```{r}
+z <- c(2,3,45,6,7,66)
+z[1:(length(z)-1)]
+z[-length(z)]
+```
+
+*13. Provide the value of the last element in the result of the vector operation dx2 from the vectors defined above.
+
+```{r}
+d <-  c(8:20)
+k= d*2
+print (a[length(a)])
+```
+
+#which ()
+```{r}
+?which()
+z <- c(5,2,-3,8)
+which(z*z>8)
+#this is a numerical index that satisfy the logical statement
+```
+
+```{r}
+#longer version of above
+z_index <- seq(z)
+z_index
+```
+
+```{r}
+z_index[z*z>8]
+```
+
+*14. Create a vector a with a sequence of 11 elements in it ranging from 0.6 to 1.9. Create another, logical vector b that identifies which elements in a are greater than or equal to 1.1. Print your results.*
+```{r}
+a <- seq(from=0.6, to=1.9, by=0.12)
+a
+which(a>=1.1)
+```
+
+
+```{r}
+?names
+x <- c(1,2,4)
+names(x) <- c("a", "b","c")
+names(x)
+```
+```{r}
+x
+```
+
+
+```{r}
+#to remove names
+names(x) <- NULL
+x
+```
+
+```{r}
+#reference names using indexes
+names(x) <- c("a","b","c")
+x["b"]
+```
+
+*Filtering vector*
+```{r}
+#using numeric_vector
+z <- c(6,7,4,2)
+numeric_vector <- c(1,2)
+z[numeric_vector]
+#or
+z[c(1,2)]
+#or 
+z[1:2]
+```
+
+```{r}
+#using logic vector
+logical_vector <- c(TRUE,TRUE,FALSE,FALSE)
+z[logical_vector]
+length(logical_vector)==length(z)
+```
+
+```{r}
+z <- c(5, 2, -3, 8)
+z
+z*z
+z*z>8
+j <- z*z>8
+w <- z[z*z > 8]
+w
+
+```
+
+```{r}
+y <- c(1,2,30,5)
+y[j]
+y[z*z>8]
+```
+
+```{r}
+#Assigning values to selective data
+x <- c(1,3,8,2,20)
+x[x>3]
+x[x>3] <- 0
+x
+```
+
+**15. Set all elements in vector a from above to 2.0 if they are greater than or equal to 1.1.**
+```{r}
+a[a>=1.1]<-2
+a
+
+```
+
+Now, what if we have an NA?
+
+x <- c(6, 1:3, NA, 12)
+x
+## [1]  6  1  2  3 NA 12
+x[x > 5] # oops, we still have that NA in there. 
+## [1]  6 NA 12
+Instead, we can use the subset() command which will remove NAs:
+
+?subset
+subset(x, x > 5)
+## [1]  6 12
+ifelse()
+
+if() statements are non-vectorized, so can be slow. ifelse() provides a vectorized version of if()
+
+?ifelse
+x <- 1:10
+x
+##  [1]  1  2  3  4  5  6  7  8  9 10
+x %% 2 == 0
+##  [1] FALSE  TRUE FALSE  TRUE FALSE  TRUE FALSE  TRUE FALSE  TRUE
+y <- ifelse(x %% 2 == 0,yes = "even", no = "odd")
+y
+##  [1] "odd"  "even" "odd"  "even" "odd"  "even" "odd"  "even" "odd"  "even"
+Vector Operations
+Now, let’s discuss some common vector operations. Try this:
+
+?"+"
+2+3
+## [1] 5
++ is actually a function! You can accomplish the same task in “function” form by:
+
+"+"(2, 3)
+## [1] 5
+Vector addition is performed element-wise:
+
+x <- c(1, 2, 4)
+x + c(5, 0, -1)
+## [1] 6 2 3
+Multiplication is also done element-wise:
+
+x*c(5, 0, -1)
+## [1]  5  0 -4
+Other basic operators also are performed element-wise:
+
+x/c(5, 4, -1)
+## [1]  0.2  0.5 -4.0
+x %% c(5, 4, -1) # Remember that %% is modulo, i.e. it returns the remainder of the division.
+## [1] 1 2 0
+Lists
+Lists are really super cool. They are a really handy way to manage your data and make sure you are getting your bookkeeping coorect.
+
+Unlike atomic vectors, lists can have elements of any type, including lists. You make a list using list() instead of c():
+
+z <- list(1:5, "b", c(TRUE, FALSE), c(1.2, 4.2, 4.3))
+str(z)
+## List of 4
+##  $ : int [1:5] 1 2 3 4 5
+##  $ : chr "b"
+##  $ : logi [1:2] TRUE FALSE
+##  $ : num [1:3] 1.2 4.2 4.3
+Sometimes lists are called recursive vectors because a list can contain other lists. This makes them fundamentally different from atomic vectors.
+
+y <- list(list(list(list())))
+str(y)
+## List of 1
+##  $ :List of 1
+##   ..$ :List of 1
+##   .. ..$ : list()
+is.recursive(y)
+## [1] TRUE
+Generating Lists
+c() combines several lists into one. If you give c() a combination of atomic vectors and lists, it will coerce them to lists before combining them.
+
+*16. Use str() to compare the results of using list() and c() on l and j for: l <-c(list(1,2),c(3,4)) and j=list(list(1,2),c(3,4))*
+Types, Testing & Coercion of Lists
+The typeof() a list is list. You can test for this using is.list and coerce to a list using as.list. You can turn a list into an atomic vector with unlist(). If the elements of a list have different types, the same coercion rules are c() are used.
+
+*17. Show what happens when you use unlist() on l and j.*
+
+Indexing Lists
+Now, let’s define a list as containing a single element numeric vector, a 3-element character vector, and a matrix (don’t worry, we will get to this in a minute):
+
+mylist <- list(u = 2,v = c("abc", "def"), w = matrix(data = c(1, 2, 3, 4), nrow = 2, ncol = 2))
+We can print the whole list out by:
+
+mylist
+## $u
+## [1] 2
+## 
+## $v
+## [1] "abc" "def"
+## 
+## $w
+##      [,1] [,2]
+## [1,]    1    3
+## [2,]    2    4
+And we can access subelements of the list in two ways. First, by using double brackets:
+
+mylist[[1]] # Prints the single-element numeric vector
+## [1] 2
+mylist[[3]] # Prints the matrix.
+##      [,1] [,2]
+## [1,]    1    3
+## [2,]    2    4
+We can also access it by using the variable name and a dollar sign:
+
+mylist$v # Prints the v variable 
+## [1] "abc" "def"
+mylist$w # Prints the w variable
+##      [,1] [,2]
+## [1,]    1    3
+## [2,]    2    4
+A list is a good way to “package up” a bunch of variables to return from a function. Lists are used a lot in R to group together disparate types of data into a more tractable variable. For instance, let’s output the histogram to a variable:
+
+hn <- hist(Nile)
+
+
+Notice it shows you a plot, but we also have a histogram “object”. Let’s look at it:
+
+hn
+## $breaks
+##  [1]  400  500  600  700  800  900 1000 1100 1200 1300 1400
+## 
+## $counts
+##  [1]  1  0  5 20 25 19 12 11  6  1
+## 
+## $density
+##  [1] 0.0001 0.0000 0.0005 0.0020 0.0025 0.0019 0.0012 0.0011 0.0006 0.0001
+## 
+## $mids
+##  [1]  450  550  650  750  850  950 1050 1150 1250 1350
+## 
+## $xname
+## [1] "Nile"
+## 
+## $equidist
+## [1] TRUE
+## 
+## attr(,"class")
+## [1] "histogram"
+Lists can often be a lot of data to look at. We can print it out more compactly:
+
+str(hn)
+## List of 6
+##  $ breaks  : int [1:11] 400 500 600 700 800 900 1000 1100 1200 1300 ...
+##  $ counts  : int [1:10] 1 0 5 20 25 19 12 11 6 1
+##  $ density : num [1:10] 0.0001 0 0.0005 0.002 0.0025 0.0019 0.0012 0.0011 0.0006 0.0001
+##  $ mids    : num [1:10] 450 550 650 750 850 950 1050 1150 1250 1350
+##  $ xname   : chr "Nile"
+##  $ equidist: logi TRUE
+##  - attr(*, "class")= chr "histogram"
+This variable is a list data structure, at its core.
+We can look at just the counts of each bin using $:
+
+hn$counts  
+##  [1]  1  0  5 20 25 19 12 11  6  1
+Applying functions to lists
+Start here:
+
+?sapply # Also will show the help for lapply
+We will see below that apply() works on a matrix input, re-running a function over each dimension of a matrix.
+
+lapply() and sapply() are equivalents to apply, except they take list inputs. These are critically important functions to learn, and provide the basis for many parallel processing routines.
+
+z <- list(1:3,25:29)
+z 
+## [[1]]
+## [1] 1 2 3
+## 
+## [[2]]
+## [1] 25 26 27 28 29
+Notice that the first and second components are different sizes, so we can’t coerce these to a matrix and use apply.
+
+output <- lapply(X = z,FUN = median) # Applies median() to each list component, and returns the output in list form.  
+Long-form, this did this:
+
+list(median(z[[1]]), median(z[[2]]))
+## [[1]]
+## [1] 2
+## 
+## [[2]]
+## [1] 27
+Notice we could have written a for loop to accomplish this, but we’d have had a lot more coding to do:
+
+output <- vector(mode = "list") # Make a blank list
+for(i in seq(z)) # Cycle through every element of z
+  {
+  output[[i]] = median(z[[i]]) # set the output indexed to i to equal the median of z at index i.
+  }
+output
+## [[1]]
+## [1] 2
+## 
+## [[2]]
+## [1] 27
+sapply() is very similar to lapply(), but does a check to see if it can “simplify” the output: i.e. reduce it to a matrix or vector:
+
+sapply_out <- sapply(X = z, FUN = median)
+sapply_out
+## [1]  2 27
+class(sapply_out) # Output is an integer vector.
+## [1] "integer"
+lapply_out <- lapply(z, median)
+lapply_out
+## [[1]]
+## [1] 2
+## 
+## [[2]]
+## [1] 27
+class(lapply_out) # Output is a list.
+## [1] "list"
+There are parallel versions of both sapply and lapply
+
+Factors
+Factors are special vectors that represent categorical data. Factors can be ordered or unordered. They are important for modeling functions like lm() and glm(), and in plot() methods. Once created, factor can only contain pre-defined set values, known as levels.
+
+Factors are stored as integers that have labels associated with the unique integers. While factors look and often behave like character vectors, they are acutally integers. Be careful when you treat them as strings. Some string methods coerce factors to strings, while others will return an error.
+
+Some factors can be left unordered, such as “male” or “female”. Other factors might need to be ordered, such as “low”, “medium”, “and”high".
+
+*18. If factors are essentially integers under the hood, why do we use them, and not just use integers (e.g., 1s and 2s instead of “male”, “female”)?*
+Generating Factors
+Factors are created with factor().
+
+my.fac <- factor(c("yes", "yes", "no", "yes", "yes", "yes"))
+my.fac
+## [1] yes yes no  yes yes yes
+## Levels: no yes
+table() will return a frequency table counting the number of elements in each level.
+
+*19. Using table(), provide the frequency of no and yes in my.fac.*
+
+Types, Testing & Coercion of Factors
+If you need to convert a factor to a character vector, use as.character(). To convert a factor to a numeric vector, go via character. Compare:
+
+f <- factor(c(1, 2, 5, 8))
+as.numeric(f) ##wrong!
+## [1] 1 2 3 4
+as.numeric(as.character(f))
+## [1] 1 2 5 8
+Often when you read data into R, it automatically converts character vectors to factors. Use the argument stringsAsFactors=FALSE to avoid this behavior, and then convert your characters vectors to factors yourself as needed.
+
+Sometimes when you read in data using R, a column you thought would produce a numeric vector instead produces a factor. This is caused having a missing value encoded in a special way like -. You can remedy this by also converting the vector after reading in the data, but it is better to identofy the problem and remedy it in the reading data portion. The na.strings argument in read.csv() is a good place to start.
+
+*20. What does this R code below do? How are f1 and f2 different from f3?*
+
+f1 <- factor(letters)
+levels(f1) <-rev(levels(f1))
+f2 <- rev(factor(letters))
+f3 <- factor(letters, levels=rev(letters))
+Applying functions to factors
+tapply(), used with vectors, allows us to apply functions on a per-level basis
+
+?tapply
+For instance, say we want to calculate the mean age of people from different political parties:
+
+ages <- c(25, 26, 55, 37, 21, 42)
+affils <- c("R", "D", "D", "R", "U", "D") # (D)emocrat, (R)epublican, (U)naffiliated
+tapply(X = ages, INDEX = affils, FUN = mean)
+##  D  R  U 
+## 41 31 21
+What this did was for each level in affils, it calculated the mean value of ages that were equal to that particular factor, e.g.:
+
+mean(ages[affils == "D"])
+## [1] 41
+mean(ages[affils == "R"])
+## [1] 31
+mean(ages[affils == "U"])
+## [1] 21
+tapply() can work with multiple factors. Here is a more complex example:
+
+d <- data.frame(gender = c("M", "M", "F", "M", "F", "F"),
+        age = c(47, 59, 21, 32, 33, 24),
+        income = c(55000, 88000, 32450, 76500, 123000, 45650))
+d
+##   gender age income
+## 1      M  47  55000
+## 2      M  59  88000
+## 3      F  21  32450
+## 4      M  32  76500
+## 5      F  33 123000
+## 6      F  24  45650
+Let’s make a categorical variable if someone is over 25:
+
+d$over25 <- ifelse(d$age > 25, 1, 0)
+d
+##   gender age income over25
+## 1      M  47  55000      1
+## 2      M  59  88000      1
+## 3      F  21  32450      0
+## 4      M  32  76500      1
+## 5      F  33 123000      1
+## 6      F  24  45650      0
+Now, we want to see the mean income for four groups: Males under 25, males over 25, females under 25, females over 25:
+
+tapply(X = d$income, INDEX = list(d$gender, d$over25), mean)
+##       0         1
+## F 39050 123000.00
+## M    NA  73166.67
+Notice that tapply figured out there were 4 groups, given the 2 factors (gender and over25).
+
+Matrices and Arrays
+Matrices are commonly used as part of the mathematics underlying much of statistics. Arrays are a little more rare.
+
+A matrix is, technically, a vector that has two additional attributes: number of rows and number of columns. The restrictions on a matrix are the same as a vector: all the elements must be the same type (e.g. integer, numeric, or character).
+
+Generating Matrices
+Matrices, remember, are vectors that have additional attributes, namely the number of rows and columns in the matrix. R also supports multidimensional arrays, e.g. a 3-d array (rows, columns, layers).
+
+One way to make a matrix is using the matrix function:
+
+mymatrix <- matrix(data = c(1, 3, 5, 8), nrow = 2, ncol = 2)
+mymatrix
+##      [,1] [,2]
+## [1,]    1    5
+## [2,]    3    8
+We could also use the “row bind” function to “stack” two vector “rows” together:
+
+mymatrix2 <- rbind(c(1, 4), c(2, 2))
+mymatrix2
+##      [,1] [,2]
+## [1,]    1    4
+## [2,]    2    2
+Matrices are created in “column-major order”, so all of column 1 is stored first, then column 2, etc. Note that raster images tend to be row-major ordered, so row 1 is stored first, then row 2, etc…
+
+?matrix
+Shortcuts with variable names: Notice from the help that the first parameter you can pass to matrix() is data=. If you don’t specify variable names in function calls, R will assume you are calling the variables in order:
+
+y <- matrix(c(1, 2, 3, 4), ncol = 2, 2) 
+y <- matrix(data = c(1, 2, 3, 4), ncol = 2, nrow = 2) 
+R knows the first parameter of the function matrix() is data, so it assumes the vector in the first position should be assigned to data = without needing to explictly define it.
+
+y 
+##      [,1] [,2]
+## [1,]    1    3
+## [2,]    2    4
+Notice that 1:4 filled in column by column. R will figure out the number of columns you need if you only specify nrow:
+
+y <- matrix(data = c(1, 2, 3, 4), ncol = 2) # It figures out the ncol by length(data)/nrow
+y[,2] # shows us everything in column 2 (notice it prints out in vector format)
+## [1] 3 4
+We can fill in a matrix element-by-element by first defining an empty matrix:
+
+y <- matrix(nrow = 2, ncol = 2)
+y
+##      [,1] [,2]
+## [1,]   NA   NA
+## [2,]   NA   NA
+As with empty vectors, an empty matrix defaults to mode(y) == logical, but will switch to the mode of the first element we assign.
+
+y[1,1] <- 1
+y[2,1] <- 2
+y[1,2] <- 3
+y[2,2] <- 4
+y
+##      [,1] [,2]
+## [1,]    1    3
+## [2,]    2    4
+Notice that we can fill in a matrix row-by-row (like an image) by using the byrow = TRUE parameter:
+
+m <- matrix(1:6, nrow = 2, byrow = TRUE)
+m
+##      [,1] [,2] [,3]
+## [1,]    1    2    3
+## [2,]    4    5    6
+Adding and deleting matrix rows and columns
+We can change the size of a matrix using rbind() (row bind) and cbind (column bind)
+
+?rbind
+?cbind
+For example, say we want to add a vector of 1s to a 4 x 4 matrix:
+
+ones = rep(1, 4)
+ones
+## [1] 1 1 1 1
+z <- matrix(seq(10, 160, by = 10), nrow = 4,ncol = 4)
+z
+##      [,1] [,2] [,3] [,4]
+## [1,]   10   50   90  130
+## [2,]   20   60  100  140
+## [3,]   30   70  110  150
+## [4,]   40   80  120  160
+We can add the row of ones to the bottom:
+
+rbind(z,ones)
+##      [,1] [,2] [,3] [,4]
+##        10   50   90  130
+##        20   60  100  140
+##        30   70  110  150
+##        40   80  120  160
+## ones    1    1    1    1
+Or to the top:
+
+rbind(ones,z)
+##      [,1] [,2] [,3] [,4]
+## ones    1    1    1    1
+##        10   50   90  130
+##        20   60  100  140
+##        30   70  110  150
+##        40   80  120  160
+Or along the left column:
+
+cbind(ones,z)
+##      ones              
+## [1,]    1 10 50  90 130
+## [2,]    1 20 60 100 140
+## [3,]    1 30 70 110 150
+## [4,]    1 40 80 120 160
+Or the right column:
+
+cbind(z,ones)
+##                    ones
+## [1,] 10 50  90 130    1
+## [2,] 20 60 100 140    1
+## [3,] 30 70 110 150    1
+## [4,] 40 80 120 160    1
+We can reassign (“overwrite”) z to have the new column at the right by:
+
+z <- cbind(z, ones)
+z
+##                    ones
+## [1,] 10 50  90 130    1
+## [2,] 20 60 100 140    1
+## [3,] 30 70 110 150    1
+## [4,] 40 80 120 160    1
+Remember that momentarily both the old z (4x4) and the new z (4x5) are held in memory
+
+We can delete rows and columns by just using our subscripts:
+
+z[, 1:4] # Clip off the 5th column
+##                   
+## [1,] 10 50  90 130
+## [2,] 20 60 100 140
+## [3,] 30 70 110 150
+## [4,] 40 80 120 160
+We can reassign it by:
+
+z <- z[, 1:4]
+z
+##                   
+## [1,] 10 50  90 130
+## [2,] 20 60 100 140
+## [3,] 30 70 110 150
+## [4,] 40 80 120 160
+Indexing Matrices
+Remember we can index a vector by using a single value, e.g.:
+
+x 
+## [1] 1 2 4
+x[1]
+## [1] 1
+A matrix has two dimensions, so we need to use two values to index it:
+
+mymatrix
+##      [,1] [,2]
+## [1,]    1    5
+## [2,]    3    8
+mymatrix[1, 2]
+## [1] 5
+A WORD OF WARNING: R matrices are called in the order row,column. This is the opposite of geographic data, in which we usually call data by: column (easting), row (northing). This may come back to confuse us later, so just be aware of this. This is known as column-major ordering of matrices.
+
+We can extract submatrices by not defining a specific element, e.g.:
+
+mymatrix[1, ] # Prints row 1, all columns of mymatrix
+## [1] 1 5
+mymatrix[ , 2] # Prints all rows, column 2 of mymatrix
+## [1] 5 8
+21. If is.matrix(x) is TRUE, what will is.array(x) return?
+y<-matrix(1:12 * 3, nrow = 4, ncol = 3)
+y
+##      [,1] [,2] [,3]
+## [1,]    3   15   27
+## [2,]    6   18   30
+## [3,]    9   21   33
+## [4,]   12   24   36
+Matrix indexing functions much the same as vectors, except we now have two dimensions (separated by a comma) to deal with. So:
+
+y[ , 2:3] # Means return all rows for columns 2 through 3
+##      [,1] [,2]
+## [1,]   15   27
+## [2,]   18   30
+## [3,]   21   33
+## [4,]   24   36
+y[2:3, ] # Means return all columns for rows 2 through 3
+##      [,1] [,2] [,3]
+## [1,]    6   18   30
+## [2,]    9   21   33
+y[2:3, 2] # Means return column 2 for rows 2 through 3
+## [1] 18 21
+Negative subscripts mean “exclude” just like in vectors:
+
+y[-2, ] # Return all columns of all rows EXCEPT row 2
+##      [,1] [,2] [,3]
+## [1,]    3   15   27
+## [2,]    9   21   33
+## [3,]   12   24   36
+We can perform assignments using row indices as well:
+
+y<-matrix(1:6, nrow = 3, ncol = 2)
+y
+##      [,1] [,2]
+## [1,]    1    4
+## [2,]    2    5
+## [3,]    3    6
+y[c(1, 3), ] # Return all columns of rows 1 and 3. 
+##      [,1] [,2]
+## [1,]    1    4
+## [2,]    3    6
+matrix(c(1, 1, 8, 12), nrow = 2)
+##      [,1] [,2]
+## [1,]    1    8
+## [2,]    1   12
+y[c(1, 3),] <- matrix(c(1, 1, 8, 12),nrow = 2)
+Filtering Matrices
+x <- matrix(c(1, 2, 3, 2, 3, 4), nrow = 3,ncol = 2)
+x[x[, 2] >= 3,] # Only returns rows where the second column entry is >= 3
+##      [,1] [,2]
+## [1,]    2    3
+## [2,]    3    4
+Breaking this down:
+
+x
+##      [,1] [,2]
+## [1,]    1    2
+## [2,]    2    3
+## [3,]    3    4
+x[ ,2]
+## [1] 2 3 4
+x[, 2] >= 3
+## [1] FALSE  TRUE  TRUE
+j <- x[, 2] >= 3
+x[j, ] # This is a vectorized operation (fast)
+##      [,1] [,2]
+## [1,]    2    3
+## [2,]    3    4
+Logical & Statement
+Here’s a more complex operation that introduces us to a logical AND statement
+
+?"&"
+There are different logical statements such as: AND & which is TRUE only if both statements are TRUE. Try it out:
+
+TRUE & FALSE
+## [1] FALSE
+TRUE & TRUE
+## [1] TRUE
+FALSE & FALSE
+## [1] FALSE
+& is a vectorized (element-by-element) operator. So:
+
+c(TRUE, TRUE, FALSE) & c(TRUE, FALSE, FALSE)
+## [1]  TRUE FALSE FALSE
+m <- matrix(1:6, nrow = 3)
+m
+##      [,1] [,2]
+## [1,]    1    4
+## [2,]    2    5
+## [3,]    3    6
+m[m[, 1] > 1 & m[, 2] > 5,]
+## [1] 3 6
+Take a second to break down the different components of this to understand what is going on.
+
+m[, 1] > 1
+## [1] FALSE  TRUE  TRUE
+m[, 2] > 5
+## [1] FALSE FALSE  TRUE
+m[, 1] > 1 & m[, 2] > 5
+## [1] FALSE FALSE  TRUE
+m
+##      [,1] [,2]
+## [1,]    1    4
+## [2,]    2    5
+## [3,]    3    6
+m[m[, 1] > 1 & m[, 2] > 5,]
+## [1] 3 6
+Matrix Operations
+Basic (and advanced) linear algebra operations are available in R and are optimized for speed (and may even use parallel execution depending on how you configured/installed R).
+
+y <- matrix(c(1, 2, 3, 4), nrow = 2, ncol = 2) 
+Left scalar multiplication:
+
+3 * y
+##      [,1] [,2]
+## [1,]    3    9
+## [2,]    6   12
+Matrix multiplication (refer to your linear algebra textbooks for the description):
+
+?"%*%"
+y %*% y
+##      [,1] [,2]
+## [1,]    7   15
+## [2,]   10   22
+Element-wise multiplication:
+
+y*y
+##      [,1] [,2]
+## [1,]    1    9
+## [2,]    4   16
+Element-wise addition:
+
+y+y
+##      [,1] [,2]
+## [1,]    2    6
+## [2,]    4    8
+Applying functions to matrices
+apply() is a very powerful tool for use with matrices. It allows an easy way to apply a function on a row-by-row, or column-by-column basis.
+
+?apply
+The general form is as follows: apply(X, MARGIN, FUN,...) Where: X is a matrix or array MARGIN is the dimension to use (1 = row by row, 2 = column by column) FUN is a function to be applied ... are addition arguments that will be passed to the function.
+
+So, say we want to calculate the mean for each column in a matrix:
+
+z <- matrix(1:6, nrow = 3) 
+z
+##      [,1] [,2]
+## [1,]    1    4
+## [2,]    2    5
+## [3,]    3    6
+apply(X = z,MARGIN = 2,FUN = mean)
+## [1] 2 5
+This is the same as:
+
+zmean <- vector(length = ncol(z))
+for(i in seq(ncol(x)))
+  {
+    zmean[i] <- mean(z[,i])
+    }
+zmean
+## [1] 2 5
+With apply(), we can define our own function:
+
+f <- function(x) { x/c(2, 8) }
+y <- apply(X = z,MARGIN = 1,FUN = f)
+y
+##      [,1]  [,2] [,3]
+## [1,]  0.5 1.000 1.50
+## [2,]  0.5 0.625 0.75
+Note, when testing functions to use with apply, it can help to first extract the dimension you plan to useand run that subset through the function directly, e.g.:
+
+test_z <- z[1, ] # Pull the first row out to test, since we are using MARGIN = 1
+f(test_z) # It works!  Now we can use this in apply...
+## [1] 0.5 0.5
+Notice z and y are transposed:
+
+z # 3 rows and 2 columns
+##      [,1] [,2]
+## [1,]    1    4
+## [2,]    2    5
+## [3,]    3    6
+y # 2 rows and 3 columns
+##      [,1]  [,2] [,3]
+## [1,]  0.5 1.000 1.50
+## [2,]  0.5 0.625 0.75
+Why does this happen? apply() coerces the output such that the column length == the length of a single function output. The exception to this is if a function returns a “scalar”, the output of apply() will be a vector. We can always transpose the output using t()
+
+?t
+y_transposed <- t(y)
+y_transposed
+##      [,1]  [,2]
+## [1,]  0.5 0.500
+## [2,]  1.0 0.625
+## [3,]  1.5 0.750
+We can send additional parameters to a function if the function is written properly:
+
+z <- matrix(1:6, nrow = 3)
+f <- function(x, y) { x/c(y, 8) }
+y <- apply(X = z, MARGIN = 1, FUN = f, y = 2) # Notice we have assigned y to be 2
+One note: apply() is not vectorized, so is not technically faster than looping through each dimension of a matrix (or array) BUT, as we will learn later, uses the basic structure of a parallel version of apply() that can be extremely fast.
+
+2-d looping
+The goal is to write a loop that will go through all possible combinations of a matrix in 2-d.
+
+Think of this as writing an image one pixel at a time, starting with the first row and then writing each column. Once all the columns of that first row are written, we move to the second row and repeat the process.
+
+So, given matrix dimensions nrow_x and ncol_x:
+
+nrow_x = 3
+ncol_x = 2
+myMatrix <- matrix(seq(10, 60, by = 10), nrow = nrow_x, ncol = ncol_x)
+myMatrix
+##      [,1] [,2]
+## [1,]   10   40
+## [2,]   20   50
+## [3,]   30   60
+We can loop through each entry by some nested for loops. First start with looping through each row:
+
+for(current_row in seq(nrow(myMatrix)))
+  {
+    print(current_row)  
+  }
+## [1] 1
+## [1] 2
+## [1] 3
+We can loop through each column by:
+
+for(current_col in seq(ncol(myMatrix)))
+  {
+    print(current_col)  
+  }
+## [1] 1
+## [1] 2
+We can now put them together:
+
+for(current_row in seq(nrow(myMatrix)))
+  {
+  for(current_col in seq(ncol(myMatrix)))
+    {
+    print(paste("Current row:",current_row,
+                "Current col:",current_col))
+  }
+  }
+## [1] "Current row: 1 Current col: 1"
+## [1] "Current row: 1 Current col: 2"
+## [1] "Current row: 2 Current col: 1"
+## [1] "Current row: 2 Current col: 2"
+## [1] "Current row: 3 Current col: 1"
+## [1] "Current row: 3 Current col: 2"
+Now let’s use these to subscript a matrix:
+
+for(current_col in seq(ncol_x)) 
+  {
+    for(current_row in seq(nrow_x))
+      {
+        print(paste("the center cell value is:",
+                        myMatrix[current_row,current_col]))
+    }
+  }
+## [1] "the center cell value is: 10"
+## [1] "the center cell value is: 20"
+## [1] "the center cell value is: 30"
+## [1] "the center cell value is: 40"
+## [1] "the center cell value is: 50"
+## [1] "the center cell value is: 60"
+myMatrix
+##      [,1] [,2]
+## [1,]   10   40
+## [2,]   20   50
+## [3,]   30   60
+Data Frames
+Data frames are the most common way of storing data in R. A data frame is a list, but with some restrictions, namely, each element of the list must be
+
+a vector
+the same length of the other elements
+The vectors, however, can be different modes (unlike a matrix). In other words, a data frame is the R equivalent of a spreadsheet. MANY models in R require the inputs to be a data frame.
+
+Useful Data Frame Functions
+head() -show first 6 rows
+tail() -show last 6 rows
+dim() - returns the dimensions
+nrow() - number of rows
+ncol() - number of columns
+str() - structure of each column
+names() - shows the names attribute for a data frame, giving the column names
+Generating Data Frames
+We can define a data frame in a similar fashion as a list, but making sure we meet the vector length requirements
+
+d <- data.frame(kids = c("Jack", "Jill"), ages = c(12, 10))
+d
+##   kids ages
+## 1 Jack   12
+## 2 Jill   10
+Try it yourself, type into the console (not a code chunk):
+
+f <- data.frame(kids=c("Jack","Jill"),ages=c(12,10,11))
+
+*22. Why didn’t that work? Hint: read the errors*
+Bonus: try:
+
+f2 <- tidyverse::tibble(kids=c("Jack","Jill"),ages=c(12,10))
+
+*BONUS. What is a tibble? Why might it be better than a data frame? Why might it be worse?*
+
+
+Just like lists, we can access individual variables by using the variable names:
+
+d$ages
+## [1] 12 10
+We can print the whole data frame:
+
+d 
+##   kids ages
+## 1 Jack   12
+## 2 Jill   10
+or in compact form:
+
+str(d)
+## 'data.frame':    2 obs. of  2 variables:
+##  $ kids: Factor w/ 2 levels "Jack","Jill": 1 2
+##  $ ages: num  12 10
+Beware! data.frame()’s default behavior turns strings into factors. Use stringsAsFactors = FALSE to avoid this.
+
+*23. What does as.matrix() do when applied to a data frame with columns of different types?*
+
+
+Combining Data Frames
+As with matrices, we can use rbind() and cbind(). rbind() adds a row (and must have the same number of elements as the data.frame).Note that with rbind(), we often want to have the input be a data frame or a list to control the mode properly: (Note that runif(x) generates x random numbers between 0 and 1.)
+
+?runif 
+random_data <- data.frame(data1 = runif(5), data2 = runif(5), data3 = runif(5))
+random_data
+##       data1     data2     data3
+## 1 0.9426971 0.9384731 0.5663838
+## 2 0.1068109 0.7319189 0.5514039
+## 3 0.1249557 0.7201024 0.4965435
+## 4 0.3644145 0.2609752 0.6632725
+## 5 0.5811907 0.5169049 0.8307670
+xnewrow <- c(2, "abc", 6)
+xnewrow2 <- c(1, 2, 3)
+xnew <- rbind(random_data, xnewrow)
+xnew
+##               data1             data2             data3
+## 1 0.942697074497119 0.938473084475845 0.566383750876412
+## 2 0.106810863362625 0.731918914243579 0.551403882680461
+## 3 0.124955674167722 0.720102380495518 0.496543475659564
+## 4 0.364414481213316 0.260975159471855 0.663272503530607
+## 5 0.581190703436732 0.516904928488657  0.83076704130508
+## 6                 2               abc                 6
+xnew2 <- rbind(random_data, xnewrow2)
+cbind() needs to have the same number of rows as the data frame. We’ll add a column to random_data that is the difference between data1 and data2:
+
+random_data_new <- cbind(random_data, (random_data$data1 - random_data$data2))
+random_data_new
+##       data1     data2     data3 (random_data$data1 - random_data$data2)
+## 1 0.9426971 0.9384731 0.5663838                              0.00422399
+## 2 0.1068109 0.7319189 0.5514039                             -0.62510805
+## 3 0.1249557 0.7201024 0.4965435                             -0.59514671
+## 4 0.3644145 0.2609752 0.6632725                              0.10343932
+## 5 0.5811907 0.5169049 0.8307670                              0.06428577
+Notice how ugly this name is. We could just as easily used our technique for adding a new component to a list:
+
+random_data_new$data_diff <- random_data$data1 - random_data$data2
+random_data_new
+##       data1     data2     data3 (random_data$data1 - random_data$data2)
+## 1 0.9426971 0.9384731 0.5663838                              0.00422399
+## 2 0.1068109 0.7319189 0.5514039                             -0.62510805
+## 3 0.1249557 0.7201024 0.4965435                             -0.59514671
+## 4 0.3644145 0.2609752 0.6632725                              0.10343932
+## 5 0.5811907 0.5169049 0.8307670                              0.06428577
+##     data_diff
+## 1  0.00422399
+## 2 -0.62510805
+## 3 -0.59514671
+## 4  0.10343932
+## 5  0.06428577
+Notice that recycling will be used for making sure the data frame components are all the right length:
+
+random_data_new
+##       data1     data2     data3 (random_data$data1 - random_data$data2)
+## 1 0.9426971 0.9384731 0.5663838                              0.00422399
+## 2 0.1068109 0.7319189 0.5514039                             -0.62510805
+## 3 0.1249557 0.7201024 0.4965435                             -0.59514671
+## 4 0.3644145 0.2609752 0.6632725                              0.10343932
+## 5 0.5811907 0.5169049 0.8307670                              0.06428577
+##     data_diff
+## 1  0.00422399
+## 2 -0.62510805
+## 3 -0.59514671
+## 4  0.10343932
+## 5  0.06428577
+random_data_new$one <- 1
+random_data_new 
+##       data1     data2     data3 (random_data$data1 - random_data$data2)
+## 1 0.9426971 0.9384731 0.5663838                              0.00422399
+## 2 0.1068109 0.7319189 0.5514039                             -0.62510805
+## 3 0.1249557 0.7201024 0.4965435                             -0.59514671
+## 4 0.3644145 0.2609752 0.6632725                              0.10343932
+## 5 0.5811907 0.5169049 0.8307670                              0.06428577
+##     data_diff one
+## 1  0.00422399   1
+## 2 -0.62510805   1
+## 3 -0.59514671   1
+## 4  0.10343932   1
+## 5  0.06428577   1
+Notice how the variable named one has two 1s.
+
+Merging Data Frames
+Data frames are R’s version of a spreadsheet. Like any properly formatted table,we can use relational operators to join two tables together. The basic function is merge():
+
+?merge
+d1 <- data.frame(names = c("Jack", "Jill", "John"), states = c("CA", "IL", "IL"))
+d2 <- data.frame(ages = c(10, 7, 12), names = c("Jill", "Jillian", "Jack"))
+d1
+##   names states
+## 1  Jack     CA
+## 2  Jill     IL
+## 3  John     IL
+d2
+##   ages   names
+## 1   10    Jill
+## 2    7 Jillian
+## 3   12    Jack
+merge(d1, d2)
+##   names states ages
+## 1  Jack     CA   12
+## 2  Jill     IL   10
+Notice a few things:
+
+R recognized that the shared variable was names, which was used to perform the join.
+
+Notice that only shared matches were returned (John is missing from d2, Jillian is missing from d1).
+
+Notice that the order of the variables retured follows the first entry, then the second.
+
+*24. What if we don’t have the same variable name? Change the data frame variables names using names(d2) <- c("ages","kids"). Then, use the help documentation to merge d1 and d2. Print your results.*
+
+Like with all databases, be careful if you have non-unique indices:
+
+d2 <- rbind(d2,list("15","Jill")) # We now have 2 Jills in d2
+d1
+##   names states
+## 1  Jack     CA
+## 2  Jill     IL
+## 3  John     IL
+d2
+##   ages   names
+## 1   10    Jill
+## 2    7 Jillian
+## 3   12    Jack
+## 4   15    Jill
+merge(d1,d2,by.x = "names", by.y = "kids", all.x = TRUE, all.y = TRUE, all=TRUE)
+## Error in fix.by(by.y, y): 'by' must specify a uniquely valid column
+Notice that Jill now appears twice in the output.Take a closer look at ?merge to see how to fine-tune a join.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
